@@ -50,7 +50,7 @@ class LogIn extends Component {
       const { emailAddress, password } = this.state;
       if (this.props.logIn(emailAddress, password)) {
         this.setState({ formValid: true, loadingVisible: false });
-        navigate('LoggedIn');
+        navigate('TurnOnNotifications');
       } else {
         this.setState({ formValid: false, loadingVisible: false });
       }

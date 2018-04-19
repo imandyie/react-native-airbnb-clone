@@ -11,6 +11,7 @@ AirBnB iOS mobile app clone using React Native & Redux
   <tr>
   <tr>
     <td><img src="./screenshots/forgotPasswordError.png" width="200"></td>
+    <td><img src="./screenshots/turnOnNotifications.png" width="200"></td>
   <tr>
 </table>
 
