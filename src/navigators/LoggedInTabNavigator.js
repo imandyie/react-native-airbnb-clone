@@ -1,3 +1,9 @@
+/**
+ * Airbnb Clone App
+ * @author: Andy
+ * @Url: https://www.cubui.com
+ */
+ 
 import { TabNavigator } from 'react-navigation';
 import ExploreContainer from '../containers/ExploreContainer';
 import InboxContainer from '../containers/InboxContainer';

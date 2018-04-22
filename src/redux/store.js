@@ -1,3 +1,9 @@
+/**
+ * Airbnb Clone App
+ * @author: Andy
+ * @Url: https://www.cubui.com
+ */
+
 import { compose, createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';

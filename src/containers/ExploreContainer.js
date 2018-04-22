@@ -1,3 +1,9 @@
+/**
+ * Airbnb Clone App
+ * @author: Andy
+ * @Url: https://www.cubui.com
+ */
+ 
 import React, { Component } from 'react';
 import {
   View,
@@ -8,8 +14,10 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import SearchBar from '../components/SearchBar';
 import Categories from '../components/explore/Categories';
+import Listings from '../components/explore/Listings';
 import colors from '../styles/colors';
 import categoriesList from '../data/categories';
+import listings from '../data/listings';
 
 export default class InboxContainer extends Component {
   static navigationOptions = {
@@ -23,6 +31,24 @@ export default class InboxContainer extends Component {
     ),
   };
 
+  renderListings() {
+    return listings.map((listing, index) => {
+      return (
+        <View
+          key={`listing-${index}`}
+        >
+          <Listings
+            key={`listing-item-${index}`}
+            title={listing.title}
+            boldTitle={listing.boldTitle}
+            listings={listing.listings}
+            showAddToFav={listing.showAddToFav}
+          />
+        </View>
+      );
+    });
+  }
+
   render() {
     return (
       <View style={styles.wrapper}>
@@ -35,6 +61,7 @@ export default class InboxContainer extends Component {
           <View style={styles.categories}>
             <Categories categories={categoriesList} />
           </View>
+          {this.renderListings()}
         </ScrollView>
       </View>
     );
@@ -47,12 +74,13 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   scrollview: {
-    paddingTop: 80,
+    paddingTop: 100,
   },
   scrollViewContent: {
     paddingBottom: 80,
   },
   categories: {
+    marginBottom: 40,
   },
   heading: {
     fontSize: 22,

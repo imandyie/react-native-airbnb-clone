@@ -1,3 +1,9 @@
+/**
+ * Airbnb Clone App
+ * @author: Andy
+ * @Url: https://www.cubui.com
+ */
+ 
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect} from 'react-redux';

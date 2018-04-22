@@ -1,3 +1,9 @@
+/**
+ * Airbnb Clone App
+ * @author: Andy
+ * @Url: https://www.cubui.com
+ */
+ 
 import * as types from './types';
 import  user from '../../data/user.json';
 

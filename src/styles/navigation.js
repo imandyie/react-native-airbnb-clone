@@ -1,3 +1,9 @@
+/**
+ * Airbnb Clone App
+ * @author: Andy
+ * @Url: https://www.cubui.com
+ */
+
 export const transparentHeaderStyle = {
   backgroundColor: 'transparent',
   position: 'absolute',

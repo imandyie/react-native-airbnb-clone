@@ -1,3 +1,9 @@
+/**
+ * Airbnb Clone App
+ * @author: Andy
+ * @Url: https://www.cubui.com
+ */
+ 
 import React, { Component } from 'react';
 import colors from '../styles/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
