@@ -14,6 +14,16 @@ import {
   View,
 } from 'react-native';
 import colors from '../../styles/colors';
+import iPhoneSize from '../../helpers/utils';
+
+const size = iPhoneSize();
+const buttonSize = 60;
+const buttonWrapperPadding = 0;
+
+if (size === 'small') {
+  buttonSize = 50;
+  buttonWrapperPadding = 20;
+}
 
 export default class NextArrowButton extends Component {
   render() {
@@ -48,13 +58,14 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     right: 20,
     bottom: 20,
+    paddingTop: buttonWrapperPadding,
   },
   button: {
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 50,
-    width: 60,
-    height: 60,
+    width: buttonSize,
+    height: buttonSize,
     backgroundColor: colors.white,
   },
   icon: {

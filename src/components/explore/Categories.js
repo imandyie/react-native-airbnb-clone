@@ -14,13 +14,20 @@ import {
   Text,
 } from 'react-native';
 import colors from '../../styles/colors';
+import iPhoneSize from '../../helpers/utils';
+
+const size = iPhoneSize();
+let cardSize = 100;
+let cardMargin = 8;
+
+if (size === 'small') {
+  cardSize = 90;
+  cardMargin = 4;
+} else if (size === 'large') {
+  cardSize = 115;
+}
 
 export default class Categories extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   get Categories() {
     const { categories } = this.props;
     return categories.map((category, index) => {
@@ -60,10 +67,10 @@ const styles = StyleSheet.create({
   card: {
     display: 'flex',
     flexDirection: 'column',
-    width: 100,
-    height: 100,
-    marginRight: 8,
-    marginLeft: 8,
+    width: cardSize,
+    height: cardSize,
+    marginRight: cardMargin,
+    marginLeft: cardMargin,
   },
   image: {
     flex: 1,

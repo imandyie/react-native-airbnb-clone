@@ -12,13 +12,35 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import colors from '../styles/colors';
+import { transparentHeaderStyle } from '../styles/navigation';
 import InputField from '../components/form/InputField';
 import Notification from '../components/Notification';
 import NextArrowButton from '../components/buttons/NextArrowButton';
+import NavBarButton from '../components/buttons/NavBarButton';
 import Loader from '../components/Loader';
+import iPhoneSize from '../helpers/utils';
+
+const size = iPhoneSize();
+const headingTextSize = 30;
+
+if (size === 'small') {
+  headingTextSize = 26;
+}
 
 export default class ForgotPassword extends Component {
+
+  static navigationOptions = ({ navigation }) => ({
+    headerLeft: <NavBarButton
+      handleButtonPress={() => navigation.goBack()}
+      location="left"
+      icon={<Icon name="angle-left" color={colors.white} size={30} />}
+    />,
+    headerStyle: transparentHeaderStyle,
+    headerTintColor: colors.white,
+  });
+
   constructor(props) {
   	super(props);
   	this.state = {
@@ -132,7 +154,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   forgotPasswordHeading: {
-  	fontSize: 28,
+  	fontSize: headingTextSize,
   	color: colors.white,
   	fontWeight: '300',
   },

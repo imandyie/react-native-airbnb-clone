@@ -23,10 +23,29 @@ import InputField from '../components/form/InputField';
 import NextArrowButton from '../components/buttons/NextArrowButton';
 import Notification from '../components/Notification';
 import Loader from '../components/Loader';
+import NavBarButton from '../components/buttons/NavBarButton';
+import iPhoneSize from '../helpers/utils';
 
+const size = iPhoneSize();
+const headingTextSize = 30;
+
+if (size === 'small') {
+  headingTextSize = 26;
+}
 class LogIn extends Component {
 
   static navigationOptions = ({ navigation }) => ({
+    headerRight: <NavBarButton
+      handleButtonPress={() => navigation.navigate('ForgotPassword')}
+      location="right"
+      color={colors.white}
+      text="Forgot Password"
+    />,
+    headerLeft: <NavBarButton
+      handleButtonPress={() => navigation.goBack()}
+      location="left"
+      icon={<Icon name="angle-left" color={colors.white} size={30} />}
+    />,
     headerStyle: transparentHeaderStyle,
     headerTintColor: colors.white,
   });
@@ -40,7 +59,8 @@ class LogIn extends Component {
       password: '',
       validPassword: false,
       loadingVisible: false,
-    }
+    };
+
     this.handleCloseNotification = this.handleCloseNotification.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleNextButton = this.handleNextButton.bind(this);
@@ -171,6 +191,7 @@ const styles = StyleSheet.create({
   scrollViewWrapper: {
     marginTop: 70,
     flex: 1,
+    padding: 0,
   },
   scrollView: {
     paddingLeft: 30,
@@ -179,7 +200,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   loginHeader: {
-    fontSize: 34,
+    fontSize: headingTextSize,
     color: colors.white,
     fontWeight: '300',
     marginBottom: 40,

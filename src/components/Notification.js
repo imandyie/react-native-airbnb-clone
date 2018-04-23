@@ -7,7 +7,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import {
   View,
   Text,
@@ -17,6 +16,16 @@ import {
   Animated,
 } from 'react-native';
 import colors from '../styles/colors';
+import iPhoneSize from '../helpers/utils';
+
+const size = iPhoneSize();
+let notificationWidth = '100%';
+
+if (size === 'small') {
+  notificationWidth = 320;
+} else if (size === 'large'); {
+  notificationWidth = 414;
+}
 
 export default class Notification extends Component {
   constructor(props) {
@@ -85,7 +94,7 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: colors.white,
     height: 60,
-    width: '100%',
+    width: notificationWidth,
     padding: 10,
   },
   notificationContent: {
