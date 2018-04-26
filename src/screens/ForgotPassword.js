@@ -119,20 +119,20 @@ export default class ForgotPassword extends Component {
             handleNextButton={this.goToNextStep}
             disabled={!validEmail}
           />
-          <View style={styles.notificationWrapper}>
-            <Notification
-              showNotification={showNotification}
-              handleCloseNotification={this.handleCloseNotification}
-              type="Error"
-              firstLine="No account exists for the requested"
-              secondLine="email address."
-            />
-          </View>
         </View>
         <Loader
           modalVisible={loadingVisible}
           animationType="fade"
         />
+        <View style={styles.notificationWrapper}>
+          <Notification
+            showNotification={showNotification}
+            handleCloseNotification={this.handleCloseNotification}
+            type="Error"
+            firstLine="No account exists for the requested"
+            secondLine="email address."
+          />
+        </View>
       </KeyboardAvoidingView>
     );
   }
@@ -146,6 +146,11 @@ const styles = StyleSheet.create({
   scrollViewWrapper: {
     marginTop: 70,
     flex: 1,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
   },
   scrollView: {
     paddingLeft: 30,
@@ -166,7 +171,9 @@ const styles = StyleSheet.create({
     marginBottom: 60,
   },
   notificationWrapper: {
-  	position: 'absolute',
-  	bottom: 0,
-  },
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+  }
 });

@@ -4,7 +4,7 @@
  * @Url: https://www.cubui.com
  */
  
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, TabBarBottom } from 'react-navigation';
 import ExploreContainer from '../containers/ExploreContainer';
 import InboxContainer from '../containers/InboxContainer';
 import ProfileContainer from '../containers/ProfileContainer';
@@ -26,6 +26,8 @@ const LoggedInTabNavigator = TabNavigator({
   	},
     activeTintColor: colors.pink
   },
+  tabBarComponent: TabBarBottom,
+  tabBarPosition: 'bottom',
 });
 
 export default LoggedInTabNavigator;

@@ -164,20 +164,20 @@ class LogIn extends Component {
             handleNextButton={this.handleNextButton}
             disabled={this.toggleNextButtonState()}
           />
-          <View style={[styles.notificationWrapper, {marginTop: notificationMarginTop}]}>
-            <Notification
-              showNotification={showNotification}
-              handleCloseNotification={this.handleCloseNotification}
-              type="Error"
-              firstLine="Those credentials don't look right."
-              secondLine="Please try again."
-            />
-          </View>
         </View>
         <Loader
           modalVisible={loadingVisible}
           animationType="fade"
         />
+        <View style={[styles.notificationWrapper, {marginTop: notificationMarginTop}]}>
+          <Notification
+            showNotification={showNotification}
+            handleCloseNotification={this.handleCloseNotification}
+            type="Error"
+            firstLine="Those credentials don't look right."
+            secondLine="Please try again."
+          />
+        </View>
       </KeyboardAvoidingView>
     );
   }
@@ -192,6 +192,11 @@ const styles = StyleSheet.create({
     marginTop: 70,
     flex: 1,
     padding: 0,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
   },
   scrollView: {
     paddingLeft: 30,
@@ -208,6 +213,8 @@ const styles = StyleSheet.create({
   notificationWrapper: {
   	position: 'absolute',
   	bottom: 0,
+    left: 0,
+    right: 0,
   }
 });
 
