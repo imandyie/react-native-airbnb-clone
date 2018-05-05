@@ -46,7 +46,7 @@ export default class Stars extends Component {
 }
 
 Stars.propTypes = {
-  votes: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
   size: PropTypes.number.isRequired,
   color: PropTypes.string.isRequired,
 };

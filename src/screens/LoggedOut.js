@@ -5,8 +5,6 @@
  */
 
 import React, { Component } from 'react';
-import colors from '../styles/colors';
-import { transparentHeaderStyle } from '../styles/navigation';
 import {
   StyleSheet,
   Text,
@@ -16,6 +14,8 @@ import {
   ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import colors from '../styles/colors';
+import { transparentHeaderStyle } from '../styles/navigation';
 import RoundedButton from '../components/buttons/RoundedButton';
 import NavBarButton from '../components/buttons/NavBarButton';
 import iPhoneSize from '../helpers/utils';

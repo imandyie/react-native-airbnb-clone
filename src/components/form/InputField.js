@@ -47,22 +47,31 @@ export default class InputField extends Component {
   	const {
       labelText,
       labelTextSize,
+      labelTextWeight,
       labelColor,
       textColor,
       borderBottomColor,
       inputType,
       customStyle,
+      inputStyle,
       onChangeText,
       showCheckmark,
       autoFocus,
       autoCapitalize,
+      placeholder,
+      value,
     } = this.props;
   	const { secureInput, scaleCheckmarkValue } = this.state;
   	const fontSize = labelTextSize || 14;
+    const fontWeight = labelTextWeight || '700';
   	const color = labelColor || colors.white;
   	const inputColor = textColor || colors.white;
   	const borderBottom = borderBottomColor || 'transparent';
     const keyboardType = inputType === 'email' ? 'email-address' : 'default';
+    let customInputStyle = inputStyle || {};
+    if (!inputStyle || inputStyle && !inputStyle.paddingBottom) {
+      customInputStyle.paddingBottom = 5;
+    }
 
     const iconScale = scaleCheckmarkValue.interpolate({
       inputRange: [0, 0.5, 1],
@@ -74,7 +83,7 @@ export default class InputField extends Component {
 
     return (
       <View style={[customStyle, styles.wrapper]}>
-        <Text style={[{color, fontSize}, styles.label]}>{labelText}</Text>
+        <Text style={[{fontWeight, color, fontSize}, styles.label]}>{labelText}</Text>
         {inputType === 'password' ?
           <TouchableOpacity
             style={styles.showButton}
@@ -91,7 +100,7 @@ export default class InputField extends Component {
           />
         </Animated.View>
         <TextInput
-          style={[{color: inputColor, borderBottomColor: borderBottom}, styles.inputField]}
+          style={[{color: inputColor, borderBottomColor: borderBottom}, inputStyle, styles.inputField]}
           secureTextEntry={secureInput}
           onChangeText={onChangeText}
           keyboardType={keyboardType}
@@ -99,6 +108,8 @@ export default class InputField extends Component {
           autoCapitalize={autoCapitalize}
           autoCorrect={false}
           underlineColorAndroid="transparent"
+          placeholder={placeholder}
+          value={value || ''}
         />
       </View>
     );
@@ -117,6 +128,10 @@ InputField.propTypes = {
   showCheckmark: PropTypes.bool.isRequired,
   autoFocus: PropTypes.bool,
   autoCapitalize: PropTypes.bool,
+  labelTextWeight: PropTypes.string,
+  inputStyle: PropTypes.object,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -124,13 +139,11 @@ const styles = StyleSheet.create({
   	display: 'flex',
   },
   label: {
-  	fontWeight: '700',
   	marginBottom: 20,
   },
   inputField: {
     borderBottomWidth: 1,
     paddingTop: 5,
-    paddingBottom: 5,
   },
   showButton: {
     position: 'absolute',

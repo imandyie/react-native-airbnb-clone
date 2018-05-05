@@ -21,15 +21,22 @@ export default class HeartButton extends Component {
     this.addToFavorite = this.addToFavorite.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ addedToFavorite: nextProps.selected });
+  }
+
   addToFavorite() {
     this.setState({
       addedToFavorite: !this.state.addedToFavorite
+    }, () => {
+      this.props.onPress();
     });
   }
 
   render() {
   	const { addedToFavorite } = this.state;
-  	const { color, selectedColor } = this.props;
+  	const { color, selectedColor, onPress } = this.props;
+
     return (
       <TouchableOpacity
         onPress={this.addToFavorite}
@@ -60,6 +67,8 @@ HeartButton.propTypes = {
   color: PropTypes.string.isRequired,
   selectedColor: PropTypes.string.isRequired,
   itemId: PropTypes.number.isRequired,
+  onPress: PropTypes.func,
+  selected: PropTypes.boolean,
 }
 
 const styles = StyleSheet.create({

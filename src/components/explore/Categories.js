@@ -34,6 +34,7 @@ export default class Categories extends Component {
       return(
         <TouchableHighlight
           style={styles.card}
+          key={`category-item-${index}`}
         >
           <Image
             source={category.photo}

@@ -26,21 +26,8 @@ export default class Listings extends Component {
   	this.renderListings = this.renderListings.bind(this);
   }
 
-  get randomColor() {
-    const colorsList = [
-      colors.gray04,
-      colors.darkOrange,
-      colors.black,
-      colors.brown01,
-      colors.blue,
-      colors.brown02,
-      colors.green01,
-    ];
-    return colorsList[Math.floor(Math.random() * colorsList.length)];
-  }
-
   renderListings() {
-  	const { listings, showAddToFav } = this.props;
+  	const { listings, showAddToFav, handleAddToFav, favouriteListings } = this.props;
     return listings.map((listing, index) => {
       return (
         <TouchableHighlight
@@ -53,6 +40,8 @@ export default class Listings extends Component {
               <HeartButton
                 color={colors.white}
                 selectedColor={colors.pink}
+                selected={favouriteListings.indexOf(listing.id) > -1}
+                onPress={() => handleAddToFav(listing)}
               />
             </View>
           : null}
@@ -61,7 +50,7 @@ export default class Listings extends Component {
               resizeMode="contain"
               source={listing.photo}
             />
-            <Text style={[{color: this.randomColor}, styles.listingType]}>{listing.type}</Text>
+            <Text style={[{color: listing.color}, styles.listingType]}>{listing.type}</Text>
             <Text
               style={styles.listingTitle}
               numberOfLines={2}
@@ -116,6 +105,8 @@ Listings.propTypes = {
   boldTitle: PropTypes.bool,
   listings: PropTypes.array.isRequired,
   showAddToFav: PropTypes.bool,
+  handleAddToFav: PropTypes.func,
+  favouriteListings: PropTypes.object,
 };
 
 const styles = StyleSheet.create({

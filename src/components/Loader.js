@@ -27,7 +27,7 @@ export default class Loader extends Component {
            <View style={styles.loaderContainer}>
              <Image
                style={styles.loaderImage}
-               source={require('../img/loading.gif')}
+               source={require('../img/greenLoader.gif')}
              />
            </View>
          </View>
@@ -63,8 +63,13 @@ const styles = StyleSheet.create({
     marginTop: -45,
   },
   loaderImage: {
-    width: 90,
-    height: 90,
+    width: 70,
+    height: 70,
     borderRadius: 15,
+    position: 'relative',
+    left: '50%',
+    marginLeft: -35,
+    top: '50%',
+    marginTop: -35,
   }
 });
