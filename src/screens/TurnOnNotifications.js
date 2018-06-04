@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { transparentHeaderStyle } from '../styles/navigation';
 import colors from '../styles/colors';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from '@expo/vector-icons/FontAwesome';
 import { NavigationActions } from 'react-navigation';
 import {
   View,

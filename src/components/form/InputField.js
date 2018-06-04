@@ -6,7 +6,7 @@
  
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from '@expo/vector-icons/FontAwesome';
 import colors from '../../styles/colors';
 import {
   View,
@@ -24,8 +24,10 @@ export default class InputField extends Component {
     this.state = {
       secureInput: props.inputType === 'text' || props.inputType === 'email' ? false : true,
       scaleCheckmarkValue: new Animated.Value(0),
+      inputValue: props.defaultValue,
     };
     this.toggleShowPassword = this.toggleShowPassword.bind(this);
+    this.onChangeText = this.onChangeText.bind(this);
   }
 
   scaleCheckmark(value) {
@@ -41,6 +43,11 @@ export default class InputField extends Component {
 
   toggleShowPassword() {
     this.setState({ secureInput: !this.state.secureInput });
+  }
+
+  onChangeText(text) {
+    this.props.onChangeText(text);
+    this.setState({ inputValue: text });
   }
 
   render() {
@@ -59,9 +66,9 @@ export default class InputField extends Component {
       autoFocus,
       autoCapitalize,
       placeholder,
-      value,
+      defaultValue,
     } = this.props;
-  	const { secureInput, scaleCheckmarkValue } = this.state;
+  	const { secureInput, scaleCheckmarkValue, inputValue } = this.state;
   	const fontSize = labelTextSize || 14;
     const fontWeight = labelTextWeight || '700';
   	const color = labelColor || colors.white;
@@ -102,14 +109,15 @@ export default class InputField extends Component {
         <TextInput
           style={[{color: inputColor, borderBottomColor: borderBottom}, inputStyle, styles.inputField]}
           secureTextEntry={secureInput}
-          onChangeText={onChangeText}
+          onChangeText={this.onChangeText}
           keyboardType={keyboardType}
           autoFocus={autoFocus}
           autoCapitalize={autoCapitalize}
           autoCorrect={false}
           underlineColorAndroid="transparent"
           placeholder={placeholder}
-          value={value || ''}
+          defaultValue={inputValue}
+          value={inputValue}
         />
       </View>
     );
@@ -131,7 +139,7 @@ InputField.propTypes = {
   labelTextWeight: PropTypes.string,
   inputStyle: PropTypes.object,
   placeholder: PropTypes.string,
-  value: PropTypes.string,
+  defaultValue: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

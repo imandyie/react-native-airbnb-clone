@@ -6,7 +6,7 @@
  
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from '@expo/vector-icons/FontAwesome';
 import colors from '../styles/colors';
 import {
   View,
@@ -22,6 +22,7 @@ export default class Stars extends Component {
     for(let i = 0; i < 5; i++) {
       starElements.push(
         <Icon
+          key={`star-${i}`}
           name="star"
           size={size}
           color={starsNumber > i ? color : colors.gray02}

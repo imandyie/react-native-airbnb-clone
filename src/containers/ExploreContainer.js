@@ -11,7 +11,6 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 import SearchBar from '../components/SearchBar';
 import Categories from '../components/explore/Categories';
 import Listings from '../components/explore/Listings';
@@ -19,19 +18,7 @@ import colors from '../styles/colors';
 import categoriesList from '../data/categories';
 import listings from '../data/listings';
 
-export default class InboxContainer extends Component {
-  static navigationOptions = {
-    header: null,
-    tabBarLabel: 'EXPLORE',
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
-        name="ios-search"
-        size={22}
-        color={tintColor}
-      />
-    ),
-  };
-
+export default class ExploreContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {

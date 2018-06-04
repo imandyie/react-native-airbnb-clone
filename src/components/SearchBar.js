@@ -6,7 +6,7 @@
  
 import React, { Component } from 'react';
 import colors from '../styles/colors';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from '@expo/vector-icons/Ionicons';
 import {
   View,
   Text,

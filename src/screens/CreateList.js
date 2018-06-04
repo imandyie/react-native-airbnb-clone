@@ -17,8 +17,8 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../redux/actions';
-import Icon from 'react-native-vector-icons/Ionicons';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Icon from '@expo/vector-icons/Ionicons';
+import FontAwesomeIcon from '@expo/vector-icons/FontAwesome';
 import colors from '../styles/colors';
 import { transparentHeaderStyle } from '../styles/navigation';
 import InputField from '../components/form/InputField';
@@ -98,7 +98,7 @@ class CreateList extends Component {
                 labelColor={colors.lightBlack}
                 textColor={colors.lightBlack}
                 placeholder={location}
-                value={location}
+                defaultValue={location}
                 borderBottomColor={colors.gray06}
                 inputType="email"
                 inputStyle={{fontSize: 18, fontWeight: '400', paddingBottom: 30}}

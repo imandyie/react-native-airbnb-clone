@@ -6,7 +6,7 @@
  
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from '@expo/vector-icons/FontAwesome';
 import {
   View,
   Text,
@@ -106,7 +106,7 @@ Listings.propTypes = {
   listings: PropTypes.array.isRequired,
   showAddToFav: PropTypes.bool,
   handleAddToFav: PropTypes.func,
-  favouriteListings: PropTypes.object,
+  favouriteListings: PropTypes.array,
 };
 
 const styles = StyleSheet.create({

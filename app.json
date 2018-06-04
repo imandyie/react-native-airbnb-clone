@@ -1,4 +1,5 @@
 {
-  "name": "AirbnbClone",
-  "displayName": "AirbnbClone"
+  "expo": {
+    "sdkVersion": "27.0.0"
+  }
 }

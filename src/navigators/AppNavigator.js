@@ -4,17 +4,22 @@
  * @Url: https://www.cubui.com
  */
  
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect} from 'react-redux';
-import { addNavigationHelpers, StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
+import {
+  createNavigationPropConstructor,
+  createNavigationReducer,
+  initializeListeners,
+} from 'react-navigation-redux-helpers';
 import LoggedOut from '../screens/LoggedOut';
 import LoggedIn from '../screens/LoggedIn';
 import LogIn from '../screens/LogIn';
 import ForgotPassword from '../screens/ForgotPassword';
 import TurnOnNotifications from '../screens/TurnOnNotifications';
 
-export const AppNavigator = StackNavigator({
+export const AppNavigator = createStackNavigator({
   LoggedOut: { screen: LoggedOut },
   LoggedIn: { screen: LoggedIn },
   LogIn: { screen: LogIn },
@@ -22,9 +27,22 @@ export const AppNavigator = StackNavigator({
   TurnOnNotifications: { screen: TurnOnNotifications },
 });
 
-const AppWithNavigationState = ({ dispatch, nav, listener }) => (
-  <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav, addListener: listener })} />
-);
+class AppWithNavigationState extends Component {
+
+  componentDidMount() {
+    initializeListeners('root', this.props.nav);
+  }
+
+  render() {
+    const navigation = createNavigationPropConstructor('root')(
+      this.props.dispatch,
+      this.props.nav,
+    );
+    return <AppNavigator navigation={navigation} />;
+  }
+
+}
+
 
 AppWithNavigationState.propTypes = {
   dispatch: PropTypes.func.isRequired,

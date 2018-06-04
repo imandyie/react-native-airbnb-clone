@@ -13,7 +13,7 @@ import {
   TouchableHighlight,
   ScrollView,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from '@expo/vector-icons/FontAwesome';
 import colors from '../styles/colors';
 import { transparentHeaderStyle } from '../styles/navigation';
 import RoundedButton from '../components/buttons/RoundedButton';

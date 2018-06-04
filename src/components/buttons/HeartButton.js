@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from '@expo/vector-icons/FontAwesome';
 import {
   View,
   TouchableOpacity,
@@ -66,9 +66,7 @@ export default class HeartButton extends Component {
 HeartButton.propTypes = {
   color: PropTypes.string.isRequired,
   selectedColor: PropTypes.string.isRequired,
-  itemId: PropTypes.number.isRequired,
   onPress: PropTypes.func,
-  selected: PropTypes.boolean,
 }
 
 const styles = StyleSheet.create({

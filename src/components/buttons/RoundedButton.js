@@ -77,8 +77,8 @@ RoundedButton.propTypes = {
   icon: PropTypes.object,
   iconPosition: PropTypes.string,
   handleOnPress: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
+  loading: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({

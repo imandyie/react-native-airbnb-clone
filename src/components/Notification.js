@@ -6,7 +6,7 @@
  
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from '@expo/vector-icons/FontAwesome';
 import {
   View,
   Text,
@@ -53,7 +53,7 @@ export default class Notification extends Component {
   	return (
   	  <Animated.View style={[{marginBottom: positionValue}, styles.wrapper]}>
   	    <View style={styles.notificationContent}>
-  	      <View style={styles.errorMessage}>
+  	      <View style={styles.errorMessageContainer}>
             <Text style={styles.errorText}>{type}</Text>
   	        <Text>{firstLine}</Text>
           </View>
@@ -107,6 +107,12 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     fontSize: 14,
   },
+  errorMessageContainer: {
+    flexDirection: 'row',
+    flex: 1,
+    marginBottom: 2,
+  },
+
   closeButton: {
     position: 'absolute',
     right: 10,
