@@ -3,7 +3,7 @@
  * @author: Andy
  * @Url: https://www.cubui.com
  */
- 
+
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -27,16 +27,18 @@ export default class Listings extends Component {
   }
 
   renderListings() {
-  	const { listings, showAddToFav, handleAddToFav, favouriteListings } = this.props;
-    return listings.map((listing, index) => {
-      return (
-        <TouchableHighlight
-          style={styles.card}
-          key={`listing-${index}`}
-        >
-          <View>
-          {showAddToFav ?
-          	<View style={styles.addToFavoriteBtn}>
+  	const {
+      listings, showAddToFav, handleAddToFav, favouriteListings,
+    } = this.props;
+    return listings.map((listing, index) => (
+      <TouchableHighlight
+        style={styles.card}
+        key={`listing-${index}`}
+      >
+        <View>
+          {showAddToFav
+          	? (
+            <View style={styles.addToFavoriteBtn}>
               <HeartButton
                 color={colors.white}
                 selectedColor={colors.pink}
@@ -44,58 +46,71 @@ export default class Listings extends Component {
                 onPress={() => handleAddToFav(listing)}
               />
             </View>
-          : null}
-            <Image
-              style={styles.image}
-              resizeMode="contain"
-              source={listing.photo}
-            />
-            <Text style={[{color: listing.color}, styles.listingType]}>{listing.type}</Text>
-            <Text
-              style={styles.listingTitle}
-              numberOfLines={2}
-            >
-              {listing.title}
-            </Text>
-            <Text style={styles.listingPrice}>${listing.price} {listing.priceType}</Text>
-            {listing.stars > 0 ?
+            )
+            : null}
+          <Image
+            style={styles.image}
+            resizeMode="contain"
+            source={listing.photo}
+          />
+          <Text style={[{ color: listing.color }, styles.listingType]}>
+            {listing.type}
+          </Text>
+          <Text
+            style={styles.listingTitle}
+            numberOfLines={2}
+          >
+            {listing.title}
+          </Text>
+          <Text style={styles.listingPrice}>
+$
+            {listing.price}
+            {' '}
+            {listing.priceType}
+          </Text>
+          {listing.stars > 0
+            ? (
               <Stars
                 votes={listing.stars}
                 size={10}
                 color={colors.green02}
               />
+            )
             : null}
-          </View>
-        </TouchableHighlight>
-      );
-    });
+        </View>
+      </TouchableHighlight>
+    ));
   }
 
   render() {
   	const { title, boldTitle } = this.props;
   	const titleStyle = boldTitle ? { fontSize: 22, fontWeight: '600' } : { fontSize: 18 };
   	return (
-  	  <View style={styles.wrapper}>
-  	    <View style={styles.titleWrapper}>
-  	      <Text style={[titleStyle, styles.title]}>{title}</Text>
-  	      <TouchableOpacity style={styles.seeAllBtn}>
-  	        <Text style={styles.seeAllBtnText}>See all</Text>
-  	        <Icon
-  	          name='angle-right'
-  	          size={18}
-  	          color={colors.gray04}
-  	        />
-  	      </TouchableOpacity>
-  	    </View>
-  	    <ScrollView
-  	      style={styles.scrollView}
-  	      contentContainerStyle={{paddingRight: 30}}
-  	      horizontal={true}
-  	      showsHorizontalScrollIndicator={false}
-  	    >
-  	      {this.renderListings()}
-  	    </ScrollView>
-  	  </View>
+    <View style={styles.wrapper}>
+      <View style={styles.titleWrapper}>
+        <Text style={[titleStyle, styles.title]}>
+          {title}
+        </Text>
+        <TouchableOpacity style={styles.seeAllBtn}>
+          <Text style={styles.seeAllBtnText}>
+See all
+          </Text>
+          <Icon
+            name="angle-right"
+            size={18}
+            color={colors.gray04}
+          />
+        </TouchableOpacity>
+      </View>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={{ paddingRight: 30 }}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      >
+        {this.renderListings()}
+      </ScrollView>
+    </View>
   	);
   }
 }
@@ -106,7 +121,7 @@ Listings.propTypes = {
   listings: PropTypes.array.isRequired,
   showAddToFav: PropTypes.bool,
   handleAddToFav: PropTypes.func,
-  favouriteListings: PropTypes.object,
+  favouriteListings: PropTypes.array,
 };
 
 const styles = StyleSheet.create({
@@ -151,7 +166,7 @@ const styles = StyleSheet.create({
   	flex: 1,
   	height: 100,
   	borderRadius: 8,
-  	marginBottom: 7
+  	marginBottom: 7,
   },
   listingTitle: {
     fontSize: 14,
@@ -175,5 +190,5 @@ const styles = StyleSheet.create({
   	marginBottom: 2,
   	fontSize: 12,
   	fontWeight: '300',
-  }
+  },
 });

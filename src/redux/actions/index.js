@@ -3,9 +3,10 @@
  * @author: Andy
  * @Url: https://www.cubui.com
  */
- 
-import * as LoggedOut from './loggedOut';
 
-export const ActionCreators = Object.assign({},
-  LoggedOut,
-);
+import * as Navigation from './navigation';
+
+const ActionCreators = Object.assign({},
+  Navigation);
+
+export default ActionCreators;

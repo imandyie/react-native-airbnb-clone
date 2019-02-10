@@ -3,7 +3,7 @@
  * @author: Andy
  * @Url: https://www.cubui.com
  */
- 
+
 import React, { Component } from 'react';
 import {
   View,
@@ -11,7 +11,8 @@ import {
   ScrollView,
   StyleSheet,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import SearchBar from '../components/SearchBar';
 import Categories from '../components/explore/Categories';
 import Listings from '../components/explore/Listings';
@@ -19,19 +20,7 @@ import colors from '../styles/colors';
 import categoriesList from '../data/categories';
 import listings from '../data/listings';
 
-export default class InboxContainer extends Component {
-  static navigationOptions = {
-    header: null,
-    tabBarLabel: 'EXPLORE',
-    tabBarIcon: ({ tintColor }) => (
-      <Icon
-        name="ios-search"
-        size={22}
-        color={tintColor}
-      />
-    ),
-  };
-
+class ExploreContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -50,12 +39,12 @@ export default class InboxContainer extends Component {
     const { navigate } = this.props.navigation;
     let { favouriteListings } = this.state;
 
-    var index = favouriteListings.indexOf(listing.id);
+    const index = favouriteListings.indexOf(listing.id);
     if (index > -1) {
       favouriteListings = favouriteListings.filter(item => item !== listing.id);
-      this.setState({favouriteListings});
+      this.setState({ favouriteListings });
     } else {
-      navigate('CreateList', {listing, onCreateListClose: this.onCreateListClose});
+      navigate('CreateList', { listing, onCreateListClose: this.onCreateListClose });
     }
   }
 
@@ -66,30 +55,32 @@ export default class InboxContainer extends Component {
     } else {
       favouriteListings = favouriteListings.filter(item => item !== listingId);
     }
-    this.setState({favouriteListings});
+    this.setState({ favouriteListings });
   }
 
   renderListings() {
-    return listings.map((listing, index) => {
-      return (
-        <View
-          key={`listing-${index}`}
-        >
-          <Listings
-            key={`listing-item-${index}`}
-            title={listing.title}
-            boldTitle={listing.boldTitle}
-            listings={listing.listings}
-            showAddToFav={listing.showAddToFav}
-            handleAddToFav={this.handleAddToFav}
-            favouriteListings={this.state.favouriteListings}
-          />
-        </View>
-      );
-    });
+    return listings.map((listing, index) => (
+      <View
+        key={`listing-${index}`}
+      >
+        <Listings
+          key={`listing-item-${index}`}
+          title={listing.title}
+          boldTitle={listing.boldTitle}
+          listings={listing.listings}
+          showAddToFav={listing.showAddToFav}
+          handleAddToFav={this.handleAddToFav}
+          favouriteListings={this.state.favouriteListings}
+        />
+      </View>
+    ));
   }
 
   render() {
+    const { data } = this.props;
+
+    console.log(data.multipleListings)
+
     return (
       <View style={styles.wrapper}>
         <SearchBar />
@@ -97,7 +88,9 @@ export default class InboxContainer extends Component {
           style={styles.scrollview}
           contentContainerStyle={styles.scrollViewContent}
         >
-          <Text style={styles.heading}>Explore Airbnb</Text>
+          <Text style={styles.heading}>
+Explore Airbnb
+          </Text>
           <View style={styles.categories}>
             <Categories categories={categoriesList} />
           </View>
@@ -106,7 +99,7 @@ export default class InboxContainer extends Component {
       </View>
     );
   }
-};
+}
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -128,5 +121,19 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingBottom: 20,
     color: colors.gray04,
-  }
+  },
 });
+
+
+const ListingsQuery = gql`
+  query {
+    multipleListings{
+      title,
+      description
+    }
+  }
+`
+
+const ExploreContainerTab = graphql(ListingsQuery)(ExploreContainer);
+
+export default ExploreContainerTab;

@@ -3,7 +3,7 @@
  * @author: Andy
  * @Url: https://www.cubui.com
  */
- 
+
 const categoriesList = [
   {
   	name: 'Homes',
@@ -16,7 +16,7 @@ const categoriesList = [
   {
   	name: 'Restaurants',
   	photo: require('./photos/restaurantsCategory.png'),
-  }
+  },
 ];
 
 export default categoriesList;

@@ -3,33 +3,35 @@
  * @author: Andy
  * @Url: https://www.cubui.com
  */
- 
+
 import React, { Component } from 'react';
-import colors from '../styles/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {
   View,
   Text,
   StyleSheet,
 } from 'react-native';
+import colors from '../styles/colors';
 
 export default class SearchBar extends Component {
   render() {
   	return (
-  	  <View style={styles.wrapper}>
-  	    <View style={styles.searchContainer}>
-	      <Icon
-	        name="ios-search"
-	        size={20}
-	        color={colors.gray02}
-            style={styles.searchIcon}
-	      />
-  	      <Text style={styles.textInput}>Try "Cape Town"</Text>
-  	    </View>
-  	  </View>
+    <View style={styles.wrapper}>
+      <View style={styles.searchContainer}>
+        <Icon
+          name="ios-search"
+          size={20}
+          color={colors.gray02}
+          style={styles.searchIcon}
+        />
+        <Text style={styles.textInput}>
+Try "Cape Town"
+        </Text>
+      </View>
+    </View>
   	);
   }
-};
+}
 
 const styles = StyleSheet.create({
   wrapper: {

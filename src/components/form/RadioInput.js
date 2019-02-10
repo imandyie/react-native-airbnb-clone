@@ -3,7 +3,7 @@
  * @author: Andy
  * @Url: https://www.cubui.com
  */
- 
+
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import {
@@ -22,7 +22,7 @@ export default class RadioInput extends Component {
 
     this.state = {
       scaleCheckmarkValue: new Animated.Value(0),
-    }
+    };
 
     this.scaleCheckmark = this.scaleCheckmark.bind(this);
   }
@@ -34,26 +34,28 @@ export default class RadioInput extends Component {
         toValue: value,
         duration: 400,
         easing: Easing.easeOutBack,
-      }
+      },
     ).start();
   }
 
   render() {
-    const { selected, iconColor, selectedBackgroundColor, selectedBorderColor, backgroundColor, borderColor } = this.props;
+    const {
+      selected, iconColor, selectedBackgroundColor, selectedBorderColor, backgroundColor, borderColor,
+    } = this.props;
     const background = selected ? selectedBackgroundColor : backgroundColor;
     const border = selected ? selectedBorderColor : borderColor;
 
     const iconScale = this.state.scaleCheckmarkValue.interpolate({
       inputRange: [0, 0.5, 1],
-      outputRange: [0.01, 1.6, 1]
+      outputRange: [0.01, 1.6, 1],
     });
 
     const scaleValue = selected ? 1 : 0;
     this.scaleCheckmark(scaleValue);
 
     return (
-      <View style={[{backgroundColor: background, borderColor: border}, styles.wrapper]}>
-        <Animated.View style={[{transform: [{scale: iconScale}]}, styles.iconWrapper]}>
+      <View style={[{ backgroundColor: background, borderColor: border }, styles.wrapper]}>
+        <Animated.View style={[{ transform: [{ scale: iconScale }] }, styles.iconWrapper]}>
           <Icon
             name="md-checkmark"
             color={iconColor}
@@ -63,7 +65,7 @@ export default class RadioInput extends Component {
       </View>
     );
   }
-};
+}
 
 RadioInput.propTypes = {
   backgroundColor: PropTypes.string.isRequired,
@@ -85,5 +87,5 @@ const styles = StyleSheet.create({
   },
   iconWrapper: {
     marginTop: 2,
-  }
+  },
 });

@@ -3,9 +3,9 @@
  * @author: Andy
  * @Url: https://www.cubui.com
  */
- 
+
 import React, { Component } from 'react';
-import  { PropTypes } from 'prop-types';
+import { PropTypes } from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   TouchableHighlight,
@@ -32,7 +32,7 @@ export default class NextArrowButton extends Component {
     return (
       <View style={styles.buttonWrapper}>
         <TouchableHighlight
-          style={[{opacity: opacityStyle}, styles.button]}
+          style={[{ opacity: opacityStyle }, styles.button]}
           onPress={handleNextButton}
           disabled={disabled}
         >
@@ -71,5 +71,5 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: -2,
     marginTop: -2,
-  }
+  },
 });

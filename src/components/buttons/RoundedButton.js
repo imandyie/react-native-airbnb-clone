@@ -3,7 +3,7 @@
  * @author: Andy
  * @Url: https://www.cubui.com
  */
- 
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -11,6 +11,8 @@ import {
   View,
   Image,
   TouchableOpacity,
+  TouchableNativeFeedback,
+  Platform,
   StyleSheet,
 } from 'react-native';
 import colors from '../../styles/colors';
@@ -21,7 +23,7 @@ export default class RoundedButton extends Component {
       loading,
       disabled,
       text,
-      textColor, 
+      textColor,
       background,
       icon,
       handleOnPress,
@@ -29,7 +31,7 @@ export default class RoundedButton extends Component {
       textWeight,
       iconPosition,
       textAlign,
-      borderColor
+      borderColor,
     } = this.props;
   	const backgroundColor = background || 'transparent';
   	const color = textColor || colors.black;
@@ -40,28 +42,60 @@ export default class RoundedButton extends Component {
     const border = borderColor || colors.white;
     const opacityStyle = disabled || loading ? 0.5 : 1;
     const textOpacity = loading ? 0 : 1;
+    const rippleColor = backgroundColor === 'transparent' ? color : 'rgba(0,0,0,0.4)';
+
+    const ButtonComponent = (buttonProps) => {
+      if (Platform.OS === 'ios') {
+        return (
+          <TouchableOpacity
+            style={[{ opacity: opacityStyle, backgroundColor, borderColor: border }, styles.iosWrapper]}
+            onPress={handleOnPress}
+            activeOpacity={0.6}
+            disabled={disabled || loading}
+          >
+            {buttonProps.children}
+          </TouchableOpacity>
+        );
+      }
+      return (
+        <View style={[styles.androidWrapper, {borderColor: border}]}>
+          <TouchableNativeFeedback
+            useForeground={true}
+            onPress={handleOnPress}
+            disabled={disabled || loading}
+            background={TouchableNativeFeedback.Ripple(rippleColor, false)}
+          >
+            <View style={[{opacity: opacityStyle, backgroundColor }, styles.androidButtonText]}>
+              {buttonProps.children}
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+      );
+    };
 
     return (
-      <TouchableOpacity
-        style={[{opacity: opacityStyle, backgroundColor, borderColor: border},styles.wrapper]}
-        onPress={handleOnPress}
-        activeOpacity={0.7}
-        disabled={disabled || loading}
-      >
+      <ButtonComponent>
         <View style={styles.buttonTextWrapper}>
           {iconLocation === 'left' && !loading ? icon : null}
-          {loading ?
-            <View style={styles.loaderContainer}>
-              <Image
-                style={styles.loaderImage}
-                source={require('../../img/whiteLoader.gif')}
-              />
-            </View>
-          : null }
-          <Text style={[{opacity: textOpacity, color, fontSize, fontWeight, textAlign: alignPosition}, styles.buttonText]}>{text}</Text>
+          {loading
+            ? (
+              <View style={styles.loaderContainer}>
+                <Image
+                  style={styles.loaderImage}
+                  source={require('../../img/whiteLoader.gif')}
+                />
+              </View>
+            )
+            : null }
+          <Text style={[{
+            opacity: textOpacity, color, fontSize, fontWeight, textAlign: alignPosition,
+          }, styles.buttonText]}
+          >
+            {text}
+          </Text>
           {iconLocation === 'right' && !loading ? icon : null}
         </View>
-      </TouchableOpacity>
+      </ButtonComponent>
     );
   }
 }
@@ -76,13 +110,13 @@ RoundedButton.propTypes = {
   borderColor: PropTypes.string,
   icon: PropTypes.object,
   iconPosition: PropTypes.string,
-  handleOnPress: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
+  handleOnPress: PropTypes.func,
+  disabled: PropTypes.bool,
+  loading: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
+  iosWrapper: {
     display: 'flex',
     paddingLeft: 20,
     paddingRight: 20,
@@ -91,6 +125,20 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     borderWidth: 1,
     marginBottom: 15,
+    alignItems: 'center',
+  },
+  androidWrapper: {
+    overflow: 'hidden',
+    borderRadius: 40,
+    borderWidth: 1,
+    marginBottom: 15,
+  },
+  androidButtonText: {
+    display: 'flex',
+    paddingLeft: 20,
+    paddingRight: 20,
+    padding: 12,
+    paddingBottom: 12,
     alignItems: 'center',
   },
   buttonTextWrapper: {
@@ -119,5 +167,5 @@ const styles = StyleSheet.create({
     marginLeft: -20,
     top: '50%',
     marginTop: -20,
-  }
+  },
 });

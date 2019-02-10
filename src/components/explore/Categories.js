@@ -3,7 +3,7 @@
  * @author: Andy
  * @Url: https://www.cubui.com
  */
- 
+
 import React, { Component } from 'react';
 import {
   ScrollView,
@@ -30,30 +30,28 @@ if (size === 'small') {
 export default class Categories extends Component {
   get Categories() {
     const { categories } = this.props;
-    return categories.map((category, index) => {
-      return(
-        <TouchableHighlight
-          style={styles.card}
-          key={`category-item-${index}`}
-        >
-          <Image
-            source={category.photo}
-            style={styles.image}
-          />
-        </TouchableHighlight>
-      );
-    });
+    return categories.map((category, index) => (
+      <TouchableHighlight
+        style={styles.card}
+        key={`category-item-${index}`}
+      >
+        <Image
+          source={category.photo}
+          style={styles.image}
+        />
+      </TouchableHighlight>
+    ));
   }
 
   render() {
   	return (
-  	  <ScrollView
-        contentContainerStyle={styles.wrapper}
-        horizontal={true}
-        showHorizontalScrollIndicator={false}
-      >
-  	    {this.Categories}
-  	  </ScrollView>
+    <ScrollView
+      contentContainerStyle={styles.wrapper}
+      horizontal
+      showHorizontalScrollIndicator={false}
+    >
+      {this.Categories}
+    </ScrollView>
   	);
   }
 }
@@ -78,4 +76,4 @@ const styles = StyleSheet.create({
     width: undefined,
     height: undefined,
   },
-})
+});

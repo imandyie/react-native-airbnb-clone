@@ -23,4 +23,4 @@ export default {
   brown01: '#ad8763',
   brown02: '#7d4918',
   blue: '#4995cd',
-}
+};

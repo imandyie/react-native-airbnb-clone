@@ -3,16 +3,16 @@
  * @author: Andy
  * @Url: https://www.cubui.com
  */
- 
+
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import colors from '../styles/colors';
 import {
   View,
   Image,
   Modal,
   StyleSheet,
 } from 'react-native';
+import colors from '../styles/colors';
 
 export default class Loader extends Component {
   render() {
@@ -20,18 +20,18 @@ export default class Loader extends Component {
     return (
       <Modal
         animationType={animationType}
-        transparent={true}
+        transparent
         visible={modalVisible}
-       >
-         <View style={styles.wrapper}>
-           <View style={styles.loaderContainer}>
-             <Image
-               style={styles.loaderImage}
-               source={require('../img/greenLoader.gif')}
-             />
-           </View>
-         </View>
-       </Modal>
+      >
+        <View style={styles.wrapper}>
+          <View style={styles.loaderContainer}>
+            <Image
+              style={styles.loaderImage}
+              source={require('../img/greenLoader.gif')}
+            />
+          </View>
+        </View>
+      </Modal>
     );
   }
 }
@@ -39,7 +39,7 @@ export default class Loader extends Component {
 Loader.propTypes = {
   animationType: PropTypes.string.isRequired,
   modalVisible: PropTypes.bool.isRequired,
-}
+};
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -71,5 +71,5 @@ const styles = StyleSheet.create({
     marginLeft: -35,
     top: '50%',
     marginTop: -35,
-  }
+  },
 });

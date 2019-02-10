@@ -3,7 +3,7 @@
  * @author: Andy
  * @Url: https://www.cubui.com
  */
- 
+
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -38,7 +38,7 @@ export default class Notification extends Component {
         tension: 2,
         friction: 8,
         easing: Easing.easeOutBack,
-      }
+      },
     ).start();
   }
 
@@ -47,29 +47,37 @@ export default class Notification extends Component {
   }
 
   render() {
-  	const { type, firstLine, secondLine, showNotification } = this.props;
+  	const {
+      type, firstLine, secondLine, showNotification,
+    } = this.props;
     showNotification ? this.animateNotification(0) : this.animateNotification(-60);
   	const { positionValue } = this.state;
   	return (
-  	  <Animated.View style={[{marginBottom: positionValue}, styles.wrapper]}>
-  	    <View style={styles.notificationContent}>
-  	      <View style={styles.errorMessage}>
-            <Text style={styles.errorText}>{type}</Text>
-  	        <Text>{firstLine}</Text>
-          </View>
-  	      <Text style={styles.errorMessage}>{secondLine}</Text>
-  	    </View>
-  	    <TouchableOpacity
-  	      style={styles.closeButton}
-  	      onPress={this.closeNotification}
-  	    >
-  	      <Icon
-  	        name="times"
-  	        size={20}
-  	        color={colors.lightGray}
-  	      />
-  	    </TouchableOpacity>
-  	  </Animated.View>
+    <Animated.View style={[{ marginBottom: positionValue }, styles.wrapper]}>
+      <View style={styles.errorMessageContainer}>
+        <View style={styles.errorMessage}>
+          <Text style={styles.errorText}>
+            {type}
+          </Text>
+          <Text>
+            {firstLine}
+          </Text>
+        </View>
+        <Text style={styles.errorMessage}>
+          {secondLine}
+        </Text>
+      </View>
+      <TouchableOpacity
+        style={styles.closeButton}
+        onPress={this.closeNotification}
+      >
+        <Icon
+          name="times"
+          size={20}
+          color={colors.lightGray}
+        />
+      </TouchableOpacity>
+    </Animated.View>
   	);
   }
 }
@@ -106,6 +114,11 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: 2,
     fontSize: 14,
+  },
+  errorMessageContainer: {
+    flexDirection: 'row',
+    flex: 1,
+    marginBottom: 2,
   },
   closeButton: {
     position: 'absolute',

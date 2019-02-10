@@ -4,22 +4,36 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "lint": "./node_modules/.bin/eslint src/"
   },
   "dependencies": {
-    "react": "16.3.1",
-    "react-native": "0.55.1",
+    "apollo-cache-inmemory": "^1.2.8",
+    "apollo-client": "^2.4.0",
+    "apollo-link-http": "^1.5.4",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-apollo": "^2.1.11",
+    "react-native": "^0.56.0",
     "react-native-vector-icons": "^4.6.0",
-    "react-navigation": "^1.5.11",
-    "react-navigation-redux-helpers": "^1.0.5",
+    "react-navigation": "^2.6.2",
+    "react-navigation-redux-helpers": "^2.0.2",
     "react-redux": "^5.0.7",
-    "redux": "^3.7.2",
+    "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.5",
     "babel-jest": "22.4.3",
-    "babel-preset-react-native": "4.0.0",
+    "babel-preset-react-native": "5.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.0",
+    "eslint-plugin-react": "^7.10.0",
     "jest": "22.4.3",
     "react-test-renderer": "16.3.1"
   },

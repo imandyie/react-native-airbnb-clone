@@ -4,20 +4,31 @@
  * @Url: https://www.cubui.com
  */
 
-import createReducer from '../helpers/createReducer';
-import { NavigationActions } from 'react-navigation';
-import { AppNavigator } from '../../navigators/AppNavigator';
 import { StatusBar } from 'react-native';
+import createReducer from '../helpers/createReducer';
+import * as types from '../actions/types';
+import AppRouteConfigs from '../../navigators/AppRouteConfigs';
 
-const firstAction = AppNavigator.router.getActionForPathAndParams('LoggedOut');
-const initialNavState = AppNavigator.router.getStateForAction(firstAction);
+const firstAction = AppRouteConfigs.router.getActionForPathAndParams('LoggedOut');
+const initialNavState = AppRouteConfigs.router.getStateForAction(firstAction);
 
-export const nav = (state = initialNavState, action) => {
-   let nextState = AppNavigator.router.getStateForAction(action, state);
+const loggedInStatus = createReducer({}, {
+  [types.SET_LOGGED_IN_STATE](state, action) {
+    return action;
+  },
+});
 
-   if (action.routeName === 'TurnOnNotifications' || action.routeName === 'LoggedIn') {
-     StatusBar.setBarStyle('dark-content', true);
-   }
+const nav = (state = initialNavState, action) => {
+  const nextState = AppRouteConfigs.router.getStateForAction(action, state);
 
-   return nextState || state;
+  if (action.routeName === 'TurnOnNotifications' || action.routeName === 'LoggedIn') {
+    StatusBar.setBarStyle('dark-content', true);
+  }
+
+  return nextState || state;
+};
+
+export {
+  loggedInStatus,
+  nav,
 };
