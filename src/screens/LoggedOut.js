@@ -57,17 +57,17 @@ Welcome to Airbnb.
             textColor={colors.green01}
             background={colors.white}
             icon={<Icon name="facebook" size={20} style={styles.facebookButtonIcon} />}
-            handleOnPress={this.onFacebookPress}
+            handleOnPress={LoggedOut.onFacebookPress}
           />
           <RoundedButton
             text="Create Account"
             textColor={colors.white}
-            handleOnPress={this.onCreateAccountPress}
+            handleOnPress={LoggedOut.onCreateAccountPress}
           />
 
           <TouchableHighlight
             style={styles.moreOptionsButton}
-            onPress={this.onMoreOptionsPress}
+            onPress={LoggedOut.onMoreOptionsPress}
           >
             <Text style={styles.moreOptionsButtonText}>
               More options
